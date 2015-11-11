@@ -2,7 +2,22 @@
 
 <body>
 <div ng-app="noteApp">
-    {{1+1}}
+    <div ng-controller="NoteController as vm">
+        <div>
+            <button ng-click="vm.createNote()">Create</button>
+            <ul>
+                <li ng-repeat="note in vm.notes">
+                    <a href="" ng-click="vm.selectedNote = note">NOTE</a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <input ng-model="vm.selectedNote.title">
+            <textarea ng-model="vm.selectedNote.content"></textarea>
+            <button ng-click="vm.updateNote()">SAVE</button>
+        </div>
+        {{vm.selectedNote}}
+    </div>
 </div>
 </body>
 
