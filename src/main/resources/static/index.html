@@ -8,6 +8,7 @@
 <body layout="column" ng-controller="NoteController as vm">
 <md-toolbar layout="row">
     <div class="md-toolbar-tools">
+        <md-button ng-click="vm.toggleLeft()" hide-gt-sm>Menu</md-button>
         <h1>VersioNote</h1>
         <span flex></span>
         <md-button ng-click="vm.createNote()">Create</md-button>

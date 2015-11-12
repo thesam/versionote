@@ -1,6 +1,6 @@
 var app = angular.module("noteApp", ['ngMaterial']);
 
-app.controller("NoteController", function($http, $mdToast,$document) {
+app.controller("NoteController", function($http, $mdToast,$document, $mdSidenav) {
      var vm = this;
 
 
@@ -30,6 +30,10 @@ app.controller("NoteController", function($http, $mdToast,$document) {
             fetchNotes();
         })
     };
+
+    vm.toggleLeft = function() {
+        $mdSidenav('left').toggle();
+    }
 
     function fetchNotes() {
         $http.get("/notes").then(function (response) {
