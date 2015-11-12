@@ -1,4 +1,4 @@
-var app = angular.module("noteApp", []);
+var app = angular.module("noteApp", ['ngMaterial']);
 
 app.controller("NoteController", function($http) {
      var vm = this;
