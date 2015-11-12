@@ -11,8 +11,7 @@
         <md-button ng-click="vm.toggleLeft()" hide-gt-sm>Menu</md-button>
         <h1>VersioNote</h1>
         <span flex></span>
-        <md-button ng-click="vm.createNote()">Create</md-button>
-        <md-button ng-click="vm.updateNote()" ng-if="vm.selectedNote">Save</md-button>
+        <md-button class="md-raised md-primary" ng-click="vm.createNote()">Create</md-button>
     </div>
 </md-toolbar>
 <div layout="row" flex>
@@ -25,7 +24,6 @@
                     ng-repeat="note in vm.notes">
                 <div class="md-list-item-text" layout="column">
                     <h3>{{ note.title }}</h3>
-
                     <p>{{ note.content }}</p>
                 </div>
             </md-list-item>
@@ -34,10 +32,15 @@
     <div layout="column" flex id="content">
         <md-content layout="column" flex class="md-padding" id="toastParent">
             <div ng-if="vm.selectedNote">
-                <md-input-container class="md-block">
-                    <label>Title</label>
-                    <input ng-model="vm.selectedNote.title">
-                </md-input-container>
+                <div layout="row">
+                    <md-input-container class="md-block" flex>
+                        <label>Title</label>
+                        <input ng-model="vm.selectedNote.title">
+                    </md-input-container>
+                    <div>
+                    <md-button class="md-raised md-primary" ng-click="vm.updateNote()" ng-if="vm.selectedNote">Save</md-button>
+                    </div>
+                </div>
                 <md-input-container class="md-block">
                     <label>Content</label>
                     <textarea ng-model="vm.selectedNote.content" columns="1"></textarea>
