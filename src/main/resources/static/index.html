@@ -1,7 +1,7 @@
 <html ng-app="noteApp">
 
 <head>
-    <meta name="viewport" content="initial-scale=1" />
+    <meta name="viewport" content="initial-scale=1"/>
     <link rel="stylesheet" href="3pp/angular-material.min.css">
 </head>
 
@@ -9,36 +9,39 @@
 <md-toolbar layout="row">
     <div class="md-toolbar-tools">
         <h1>VersioNote</h1>
+        <span flex></span>
+        <md-button ng-click="vm.createNote()">Create</md-button>
+        <md-button ng-click="vm.updateNote()" ng-if="vm.selectedNote">Save</md-button>
     </div>
 </md-toolbar>
 <div layout="row" flex>
-    <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-4dp" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
-        <md-button class="md-accent">Button 1</md-button>
-        <md-button class="md-accent">Button 2</md-button>
+    <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-4dp" md-component-id="left"
+                md-is-locked-open="$mdMedia('gt-sm')">
+        <md-list>
+            <md-list-item
+                    class="md-2-line md-whiteframe-1dp"
+                    ng-click="vm.selectedNote = note"
+                    ng-repeat="note in vm.notes">
+                <div class="md-list-item-text" layout="column">
+                    <h3>{{ note.title }}</h3>
+
+                    <p>{{ note.content }}</p>
+                </div>
+            </md-list-item>
+        </md-list>
     </md-sidenav>
     <div layout="column" flex id="content">
-        <md-toolbar layout="row">
-            <div class="md-toolbar-tools">
-                <md-button ng-click="vm.updateNote()" ng-if="vm.selectedNote">Save</md-button>
+        <md-content layout="column" flex class="md-padding" id="toastParent">
+            <div ng-if="vm.selectedNote">
+                <md-input-container class="md-block">
+                    <label>Title</label>
+                    <input ng-model="vm.selectedNote.title">
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Content</label>
+                    <textarea ng-model="vm.selectedNote.content" columns="1"></textarea>
+                </md-input-container>
             </div>
-        </md-toolbar>
-        <md-content layout="column" flex class="md-padding">
-            This Starter Application consists of a Toolbar, SideNav (with two buttons), and Content area.
-            <p>This is the content area! </p>
-            <div>
-                <button ng-click="vm.createNote()">Create</button>
-                <ul>
-                    <li ng-repeat="note in vm.notes">
-                        <a href="" ng-click="vm.selectedNote = note">NOTE</a>
-                    </li>
-                </ul>
-            </div>
-            <div>
-                <input ng-model="vm.selectedNote.title">
-                <textarea ng-model="vm.selectedNote.content"></textarea>
-                <button ng-click="vm.updateNote()">SAVE</button>
-            </div>
-            {{vm.selectedNote}}
         </md-content>
     </div>
 </div>
